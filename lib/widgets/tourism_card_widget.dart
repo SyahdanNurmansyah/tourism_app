@@ -17,18 +17,58 @@ class TourismCardWidget extends StatelessWidget {
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
+        child: Row(
+          spacing: 12,
+          crossAxisAlignment: .start,
           children: [
-            Text(tourism.name, style: AppConstants.titleStyle),
-            Text(
-              tourism.description,
-              style: AppConstants.bodyStyle,
-              maxLines: 3,
-              softWrap: true,
-              overflow: TextOverflow.ellipsis,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: 120,
+                  maxWidth: 120,
+                  minHeight: 80,
+                  maxHeight: 80,
+                ),
+                child: Image.network(tourism.image, fit: BoxFit.cover),
+              ),
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    tourism.name,
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
+                  Row(
+                    spacing: 6,
+                    children: [
+                      Icon(Icons.pin_drop, size: 14),
+                      Expanded(
+                        child: Text(
+                          tourism.address,
+                          style: AppConstants.bodyStyle.copyWith(fontSize: 12),
+                          softWrap: true,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox.square(dimension: 8),
+                  Row(
+                    spacing: 6,
+                    children: [
+                      Icon(Icons.favorite_rounded, size: 18, color: Colors.red),
+                      Text(
+                        tourism.like.toString(),
+                        style: AppConstants.bodyStyle.copyWith(fontSize: 12),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
