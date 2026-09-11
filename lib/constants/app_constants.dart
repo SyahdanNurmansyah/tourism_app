@@ -15,17 +15,12 @@ class AppConstants {
     height: 1.2,
   );
 
-  static TextStyle get titleStyle => GoogleFonts.googleSans(
-    fontSize: 18,
-    fontWeight: FontWeight.w600,
-    color: textColor,
-  );
+  static TextStyle get titleStyle =>
+      GoogleFonts.googleSans(fontSize: 18, fontWeight: FontWeight.w600);
 
-  static TextStyle get mediumStyle =>
-      GoogleFonts.inter(fontSize: 16, color: textColor);
+  static TextStyle get mediumStyle => GoogleFonts.inter(fontSize: 16);
 
-  static TextStyle get bodyStyle =>
-      GoogleFonts.inter(fontSize: 14, color: textColor);
+  static TextStyle get bodyStyle => GoogleFonts.inter(fontSize: 14);
 
   // PADDING
   static const double largePadding = 24.0;

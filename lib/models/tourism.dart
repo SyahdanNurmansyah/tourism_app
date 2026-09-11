@@ -30,7 +30,7 @@ final List<Tourism> tourismList = [
     longitude: 121.791432,
     latitude: -8.7415482,
     like: 57,
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kelimutu_2008-08-08.jpg/800px-Kelimutu_2008-08-08.jpg',
+    image: 'https://asset.kompas.com/crops/NkA3My9j4TneVwst-7e3F18-h20=/53x0:676x415/1200x800/data/photo/2020/05/18/5ec278e912802.jpg',
   ),
   Tourism(
     id: 2,
@@ -60,7 +60,7 @@ final List<Tourism> tourismList = [
     longitude: 124.7601806,
     latitude: 1.6231908,
     like: 60,
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Sunset_at_Bunaken_Island%2C_Sulawesi%2C_2016.jpg/800px-Sunset_at_Bunaken_Island%2C_Sulawesi%2C_2016.jpg',
+    image: 'https://pariwisataindonesia.id/wp-content/uploads/2020/04/PI2-Taman-Nasional-Bunaken1-photo-by-Pinterest.jpg',
   ),
   Tourism(
     id: 5,
@@ -100,7 +100,8 @@ final List<Tourism> tourismList = [
     longitude: 118.2414973,
     latitude: 2.2842912,
     like: 5,
-    image: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Derawan_Island_East_Kalimantan.jpg',
+    image:
+        'https://i.misteraladin.com/blog/2015/10/01112542/derawan-islands.png',
   ),
   Tourism(
     id: 9,
@@ -110,7 +111,7 @@ final List<Tourism> tourismList = [
     longitude: 107.399951,
     latitude: -7.166154,
     like: 94,
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Kawah_Putih_from_the_bottom%2C_Bandung_Regency%2C_2014-08-21.jpg/800px-Kawah_Putih_from_the_bottom%2C_Bandung_Regency%2C_2014-08-21.jpg',
+    image: 'https://asset.kompas.com/crops/MkLsEG9xQWYIoY0XZnl59TVoA9s=/0x0:0x0/1200x800/data/photo/2023/11/03/654500c3ebb18.jpg',
   ),
   Tourism(
     id: 10,
@@ -120,7 +121,7 @@ final List<Tourism> tourismList = [
     longitude: 107.7115838,
     latitude: -2.5517187,
     like: 78,
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Tanjung_Tinggi_Beach%2C_Bangka-Belitung_Province%2C_Indonesia.jpg/800px-Tanjung_Tinggi_Beach%2C_Bangka-Belitung_Province%2C_Indonesia.jpg',
+    image: 'https://i0.wp.com/labirutour.com/wp-content/uploads/2021/08/200509172508_pantai-tanjung-tinggi-belitung_2.jpg?resize=900%2C675&ssl=1',
   ),
   Tourism(
     id: 11,
@@ -130,7 +131,7 @@ final List<Tourism> tourismList = [
     longitude: 129.9167,
     latitude: -4.5333,
     like: 103,
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Bandaneira-0039.JPG/1600px-Bandaneira-0039.JPG',
+    image: 'https://asset.kompas.com/crops/yH31pDj_4ZghOmi7MVo6RYgYOto=/1x319:1024x1001/1200x800/data/photo/2022/09/04/6314d47545313.jpg',
   ),
   Tourism(
     id: 12,

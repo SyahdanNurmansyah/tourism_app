@@ -16,61 +16,74 @@ class TourismCardWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        child: Row(
-          spacing: 12,
-          crossAxisAlignment: .start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minWidth: 120,
-                  maxWidth: 120,
-                  minHeight: 80,
-                  maxHeight: 80,
+        padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 16),
+        child: Card(
+          color: Colors.grey,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              spacing: 12,
+              crossAxisAlignment: .start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minWidth: 120,
+                      maxWidth: 120,
+                      minHeight: 80,
+                      maxHeight: 80,
+                    ),
+                    child: Image.network(tourism.image, fit: BoxFit.cover),
+                  ),
                 ),
-                child: Image.network(tourism.image, fit: BoxFit.cover),
-              ),
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    tourism.name,
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
-                  Row(
-                    spacing: 6,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.pin_drop, size: 14),
-                      Expanded(
-                        child: Text(
-                          tourism.address,
-                          style: AppConstants.bodyStyle.copyWith(fontSize: 12),
-                          softWrap: true,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox.square(dimension: 8),
-                  Row(
-                    spacing: 6,
-                    children: [
-                      Icon(Icons.favorite_rounded, size: 18, color: Colors.red),
                       Text(
-                        tourism.like.toString(),
-                        style: AppConstants.bodyStyle.copyWith(fontSize: 12),
+                        tourism.name,
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      Row(
+                        spacing: 6,
+                        children: [
+                          Icon(Icons.pin_drop, size: 14),
+                          Expanded(
+                            child: Text(
+                              tourism.address,
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(fontSize: 11),
+                              softWrap: true,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox.square(dimension: 8),
+                      Row(
+                        spacing: 6,
+                        children: [
+                          Icon(
+                            Icons.favorite_rounded,
+                            size: 18,
+                            color: Colors.red,
+                          ),
+                          Text(
+                            tourism.like.toString(),
+                            style: AppConstants.bodyStyle.copyWith(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourism_app/adaptive_widget/cupertino_widget.dart';
 import 'package:tourism_app/models/tourism.dart';
 import 'package:tourism_app/screens/details/detail_screen.dart';
 import 'package:tourism_app/screens/home/home_screen.dart';
@@ -17,6 +18,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Toursim App',
+
       theme: TourismTheme.lightTheme,
       darkTheme: TourismTheme.darkTheme,
       themeMode: ThemeMode.system,
@@ -27,6 +29,7 @@ class MainApp extends StatelessWidget {
         NavigatorRoutes.detailRoute.name: (context) => DetailScreen(
           tourism: ModalRoute.of(context)?.settings.arguments as Tourism,
         ),
+        NavigatorRoutes.detailRoute.name: (context) => CupertinoWidget(),
       },
     );
   }

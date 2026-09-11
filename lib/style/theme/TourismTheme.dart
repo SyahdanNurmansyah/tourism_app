@@ -5,23 +5,15 @@ import 'package:tourism_app/constants/tourism_color.dart';
 class TourismTheme {
   static TextTheme get _textTheme {
     return TextTheme(
-      headlineLarge: AppConstants.headingStyle,
-      titleLarge: AppConstants.titleStyle,
-      bodyLarge: AppConstants.bodyStyle,
+      headlineSmall: AppConstants.headingStyle,
+      titleSmall: AppConstants.titleStyle,
+      bodySmall: AppConstants.bodyStyle,
       bodyMedium: AppConstants.mediumStyle,
     );
   }
 
   static AppBarTheme get _appBarTheme {
-    return AppBarTheme(
-      toolbarTextStyle: AppConstants.titleStyle,
-      shape: const BeveledRectangleBorder(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(14),
-          bottomRight: Radius.circular(14),
-        ),
-      ),
-    );
+    return AppBarTheme(toolbarTextStyle: AppConstants.titleStyle);
   }
 
   static ThemeData get lightTheme {
