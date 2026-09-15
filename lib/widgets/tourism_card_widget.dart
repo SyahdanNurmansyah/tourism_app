@@ -34,7 +34,10 @@ class TourismCardWidget extends StatelessWidget {
                       minHeight: 80,
                       maxHeight: 80,
                     ),
-                    child: Image.network(tourism.image, fit: BoxFit.cover),
+                    child: Hero(
+                      tag: tourism.image,
+                      child: Image.network(tourism.image, fit: BoxFit.cover),
+                    ),
                   ),
                 ),
                 Expanded(
