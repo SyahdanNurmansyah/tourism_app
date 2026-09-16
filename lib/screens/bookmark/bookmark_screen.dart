@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tourism_app/models/tourism.dart';
+import 'package:tourism_app/provider/detail/bookmark_list_provider.dart';
 import 'package:tourism_app/static/navigator_routes.dart';
 import 'package:tourism_app/widgets/tourism_card_widget.dart';
 
@@ -12,20 +14,34 @@ class BookmarkScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Bookmark List')),
 
-      body: ListView.builder(
-        itemCount: bookmarkTourismList.length,
-        itemBuilder: (context, index) {
-          final tourism = bookmarkTourismList[index];
-          return TourismCardWidget(
-            tourism: tourism,
-            onTap: () {
-              Navigator.pushNamed(
-                context,
-                NavigatorRoutes.detailRoute.name,
-                arguments: tourism,
-              );
-            },
-          );
+      body: Consumer<BookmarkListProvider>(
+        builder: (context, value, child) {
+          final bookmarkList = value.bookmarkList;
+
+          return switch (bookmarkList.isNotEmpty) {
+            true => ListView.builder(
+              itemCount: bookmarkTourismList.length,
+              itemBuilder: (context, index) {
+                final tourism = bookmarkList[index];
+                return TourismCardWidget(
+                  tourism: tourism,
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      NavigatorRoutes.detailRoute.name,
+                      arguments: tourism,
+                    );
+                  },
+                );
+              },
+            ),
+            _ => const Center(
+              child: Column(
+                mainAxisAlignment: .center,
+                children: [Text('No Bookmarked')],
+              ),
+            ),
+          };
         },
       ),
     );

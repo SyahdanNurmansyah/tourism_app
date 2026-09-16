@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tourism_app/models/tourism.dart';
+import 'package:tourism_app/provider/detail/bookmark_list_provider.dart';
 import 'package:tourism_app/screens/bookmark/bookmark_screen.dart';
 import 'package:tourism_app/screens/details/detail_screen.dart';
 import 'package:tourism_app/screens/home/home_screen.dart';
+import 'package:tourism_app/provider/main/index_nav_provider.dart';
 import 'package:tourism_app/screens/main/main_screen.dart';
 import 'package:tourism_app/static/navigator_routes.dart';
 import 'package:tourism_app/style/theme/TourismTheme.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    // 5. Tambahkan ChangeNotifierProvider sebagai parent widget yang menaungi state dalam IndexNavProvider.
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => IndexNavProvider()),
+
+        ChangeNotifierProvider(create: (context) => BookmarkListProvider()),
+      ],
+      child: MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
