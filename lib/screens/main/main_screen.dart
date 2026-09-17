@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tourism_app/screens/bookmark/bookmark_screen.dart';
@@ -19,12 +18,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // body: switch (_indexBottomNavBar) {
-      //   0 => const HomeScreen(),
-      //   _ => const BookmarkScreen(),
-      // },
-
-      // 4. Setelah itu, gunakan widget Consumer unutk memperbarui tampilan UI berdasarkan perubahan state.
       body: Consumer<IndexNavProvider>(
         builder: (context, value, child) {
           return switch (value.indexBottomNavBar) {
@@ -34,19 +27,14 @@ class _MainScreenState extends State<MainScreen> {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        // currentIndex: _indexBottomNavBar,
+        // 1. Pada paramter onTap ini untuk memperbarui sate _indexBottomNavBar. Gunanak extension method read untuk memanggil method setIndexBottomNavBar.
 
-        // 3. Lalu, ganti nilai currentIndex untuk mendapatkan nilai yang up-to-date dari Provider dengan memanfaatkan extension method watch.
+        onTap: (value) =>
+            context.read<IndexNavProvider>().setIndexBottomNavBar = value,
+
+        // 3. Untuk mendapatkan nilai yang up-to-date dari Provider setiap perubahan widget.
         currentIndex: context.watch<IndexNavProvider>().indexBottomNavBar,
 
-        // 2. Selanjutnya, pada parameter onTap ini isi method menjadi di bawah ini untuk memperbarui state _indexBottomNavBar. Gunakan extension method read untuk memanggil method setIndexBottomNavBar.
-        onTap: (index) {
-          context.read<IndexNavProvider>().setIndexBottomNavBar = index;
-
-          // setState(() {
-          //   _indexBottomNavBar = index;
-          // }); DIGANTI PROVIDER
-        },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -54,12 +42,18 @@ class _MainScreenState extends State<MainScreen> {
             tooltip: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
+            icon: Icon(Icons.bookmark_rounded),
             label: 'Bookmark',
             tooltip: 'Bookmark',
           ),
         ],
       ),
+
+      // 4. Setelah itu, gunakan widget Consumer unutk memperbarui tampilan UI berdasarkan perubahan state.
+
+      // 3. Lalu, ganti nilai currentIndex untuk mendapatkan nilai yang up-to-date dari Provider dengan memanfaatkan extension method watch.
+
+      // 2. Selanjutnya, pada parameter onTap ini isi method menjadi di bawah ini untuk memperbarui state _indexBottomNavBar. Gunakan extension method read untuk memanggil method setIndexBottomNavBar.
     );
   }
 }

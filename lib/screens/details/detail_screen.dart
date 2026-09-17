@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tourism_app/constants/app_constants.dart';
 import 'package:tourism_app/models/tourism.dart';
+import 'package:tourism_app/provider/detail/bookmark_list_provider.dart';
 import 'package:tourism_app/provider/icon/bookmark_icon_provider.dart';
 import 'package:tourism_app/widgets/bookmark_icon_widget.dart';
 
@@ -21,6 +22,7 @@ class DetailScreen extends StatelessWidget {
           ),
         ],
       ),
+
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

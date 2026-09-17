@@ -1,15 +1,16 @@
-import 'package:flutter/widgets.dart';
+//  MENAMBAHKAN BOOKMARKLISTPROVIDER
+
+import 'package:flutter/cupertino.dart';
 import 'package:tourism_app/models/tourism.dart';
 
 class BookmarkListProvider extends ChangeNotifier {
-  // Tambahkan state baru bernama _bookmarkListyang berisi list kosong. State ini akan menampung daftar item yang telah tercatat pada fitur bookmark.
-
+  // 1. Tambahkan state bernama _bookmarkList yang berisi list kosong.
   final List<Tourism> _bookmarkList = [];
 
-  // Kemudian, buat method getter untuk mendapatkan nilai state.
+  // 2. Buat geeter untuk mendapatkan nilai state.
   List<Tourism> get bookmarkList => _bookmarkList;
 
-  // Anda perlu mengetahui beberapa hal terkait bookmark bookmark. Anda perlu mengelolanya dengan cara menambah, menghapus, dan memeriksa item bookmark. Untuk itu, kita memerlukan tiga method baru untuk menangani proses tersebut.
+  // 3. Perlu tiga method unutk mengelolanya dengan cara meambabh, menghapus, dan memeriksa item bookmark.
 
   void addBookmark(Tourism value) {
     _bookmarkList.add(value);
@@ -22,10 +23,11 @@ class BookmarkListProvider extends ChangeNotifier {
   }
 
   bool checkItemBookmark(Tourism value) {
-    final tourismInList = _bookmarkList.where(
+    final tourismList = _bookmarkList.where(
       (element) => element.id == value.id,
     );
-
-    return tourismInList.isNotEmpty;
+    return tourismList.isNotEmpty;
   }
 }
+
+// Kode BookmarkListProvider sudah beres. Sekarang beralih ke berkash bookmark_screen.dart
