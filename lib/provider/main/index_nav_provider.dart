@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class IndexNavProvider with ChangeNotifier {
+class IndexNavProvider extends ChangeNotifier {
   int _indexBottomNavBar = 0;
 
   // Kemudian, beri method getter-setter untuk mengakses dan memperbarui nilai state _indexBottomNavBar. Jangan lupakan method notifyListener() supaya perubahan dapat didengar oleh widget.

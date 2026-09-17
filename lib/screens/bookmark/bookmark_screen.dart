@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tourism_app/models/tourism.dart';
 import 'package:tourism_app/provider/detail/bookmark_list_provider.dart';
 import 'package:tourism_app/static/navigator_routes.dart';
 import 'package:tourism_app/widgets/tourism_card_widget.dart';
@@ -20,7 +18,7 @@ class BookmarkScreen extends StatelessWidget {
 
           return switch (bookmarkList.isNotEmpty) {
             true => ListView.builder(
-              itemCount: bookmarkTourismList.length,
+              itemCount: bookmarkList.length,
               itemBuilder: (context, index) {
                 final tourism = bookmarkList[index];
                 return TourismCardWidget(

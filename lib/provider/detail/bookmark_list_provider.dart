@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:tourism_app/models/tourism.dart';
 
-class BookmarkListProvider with ChangeNotifier {
+class BookmarkListProvider extends ChangeNotifier {
   // Tambahkan state baru bernama _bookmarkListyang berisi list kosong. State ini akan menampung daftar item yang telah tercatat pada fitur bookmark.
 
   final List<Tourism> _bookmarkList = [];
