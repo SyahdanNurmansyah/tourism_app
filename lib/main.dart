@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tourism_app/models/tourism.dart';
+import 'package:tourism_app/data/models/tourism.dart';
 import 'package:tourism_app/provider/detail/bookmark_list_provider.dart';
-import 'package:tourism_app/provider/icon/bookmark_icon_provider.dart';
 import 'package:tourism_app/screens/details/detail_screen.dart';
 import 'package:tourism_app/provider/main/index_nav_provider.dart';
 import 'package:tourism_app/screens/main/main_screen.dart';

@@ -1,7 +1,7 @@
 //  MENAMBAHKAN BOOKMARKLISTPROVIDER
 
 import 'package:flutter/cupertino.dart';
-import 'package:tourism_app/models/tourism.dart';
+import 'package:tourism_app/data/models/tourism.dart';
 
 class BookmarkListProvider extends ChangeNotifier {
   // 1. Tambahkan state bernama _bookmarkList yang berisi list kosong.

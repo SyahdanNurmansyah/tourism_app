@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tourism_app/constants/app_constants.dart';
-import 'package:tourism_app/models/tourism.dart';
+import 'package:tourism_app/data/models/tourism.dart';
 
 class TourismCardWidget extends StatelessWidget {
   final Tourism tourism;
