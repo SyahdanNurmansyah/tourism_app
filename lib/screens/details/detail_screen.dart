@@ -1,13 +1,40 @@
+import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tourism_app/constants/app_constants.dart';
+import 'package:tourism_app/data/api/api_service.dart';
 import 'package:tourism_app/data/models/tourism.dart';
+import 'package:tourism_app/data/models/tourism_detail_response.dart';
 import 'package:tourism_app/provider/icon/bookmark_icon_provider.dart';
+import 'package:tourism_app/screens/details/body_of_detail_screen_widget.dart';
 import 'package:tourism_app/widgets/bookmark_icon_widget.dart';
 
-class DetailScreen extends StatelessWidget {
-  final Tourism tourism;
-  const DetailScreen({super.key, required this.tourism});
+// Menambahkan FutureBuilder di DetailScreen
+// 1. Ubah widget jadi StatefulWidget
+class DetailScreen extends StatefulWidget {
+  // 2. Untuk mengakses API, kita memerlukan satu parameter saja, yaitu id wisata. Kita tidak membutuhkan parameter lain untuk menampilkan halaman detail karena akan ditangani oleh Web API.
+
+  final int tourismId;
+  const DetailScreen({super.key, required this.tourismId});
+
+  @override
+  State<DetailScreen> createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  // 3. Berikutnya, beri lokal variabel untuk menyimpan objek Future dan Completer.
+
+  // Objek Future akan dipanggil untuk mendapatkan data Tourism dari ApiService. Sedangkan objek Completer aka nmenunggu data Tourism dari objek Future.
+  final Completer<Tourism> _completerTourism = Completer<Tourism>();
+  late Future<TourismDetailResponse> _futureTourismDetail;
+
+  // 4. Definisikan lokal variabel _futureTourismDetail pada method initState.
+  @override
+  void initState() {
+    super.initState();
+    _futureTourismDetail = ApiService().getDetailTourism(widget.tourismId);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,50 +44,46 @@ class DetailScreen extends StatelessWidget {
         actions: [
           ChangeNotifierProvider(
             create: (context) => BookmarkIconProvider(),
-            child: BookmarkIconWidget(tourism: tourism),
+
+            // 5. Selanjutnya, bungkus widget BookmarkIconWidget dengan FutureBuilder.
+            child: FutureBuilder(
+              future: _completerTourism.future,
+              builder: (context, snapshot) {
+                return switch (snapshot.connectionState) {
+                  ConnectionState.done => BookmarkIconWidget(
+                    tourism: snapshot.data!,
+                  ),
+
+                  _ => const SizedBox(),
+                };
+              },
+            ),
           ),
         ],
       ),
 
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
+      // 6. Kemudian, fokus pada widget SingleChildScrollView. Anda bisa membuat widget tersebut menjadi widget baru dan beri nama BodyOfDetailScreenWidget
 
-          child: Column(
-            children: [
-              Hero(
-                tag: tourism.image,
-                child: Image.network(tourism.image, fit: BoxFit.cover),
-              ),
-              const SizedBox.square(dimension: 16),
-              Row(
-                mainAxisAlignment: .spaceBetween,
-                crossAxisAlignment: .center,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: .start,
-                      children: [
-                        Text(tourism.name, style: AppConstants.headingStyle),
-                        Text(tourism.address, style: AppConstants.bodyStyle),
-                      ],
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      const Icon(Icons.favorite_rounded),
-                      const SizedBox.square(dimension: 4),
-                      Text(tourism.like.toString()),
-                    ],
-                  ),
-                ],
-              ),
+      // 7. Lalu, bungkus widget BodyOfDetailScreenWidget dengan FutureBuilder. Sisipkan juga completer untuk mendapatkan akses tourismData ke _completerTourism.
+      body: FutureBuilder(
+        future: _futureTourismDetail,
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              return const Center(child: CupertinoActivityIndicator());
 
-              const SizedBox.square(dimension: 16),
-              Text(tourism.description),
-            ],
-          ),
-        ),
+            case ConnectionState.done:
+              if (snapshot.hasError) {
+                return Text(snapshot.error.toString());
+              }
+              final tourismData = snapshot.data!.place;
+              _completerTourism.complete(tourismData);
+              return BodyOfDetailScreenWidget(tourism: tourismData);
+
+            default:
+              return const SizedBox();
+          }
+        },
       ),
     );
   }

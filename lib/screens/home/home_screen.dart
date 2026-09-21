@@ -79,10 +79,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   return TourismCardWidget(
                     tourism: tourism,
                     onTap: () {
+                      // 9. Kemudian, buka berkas home_screen.dart. Perbaiki juga argumen pada DetailScreen menjadi seperti berikut.
+
                       Navigator.pushNamed(
                         context,
                         NavigatorRoutes.detailRoute.name,
-                        arguments: tourism,
+                        arguments: tourism.id,
                       );
                     },
                   );

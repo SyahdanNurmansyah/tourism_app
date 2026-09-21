@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tourism_app/data/models/tourism.dart';
 import 'package:tourism_app/provider/detail/bookmark_list_provider.dart';
 import 'package:tourism_app/screens/details/detail_screen.dart';
 import 'package:tourism_app/provider/main/index_nav_provider.dart';
@@ -14,6 +13,8 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => IndexNavProvider()),
+
+        // 8. Langkah berikutnya adalah memperbaiki kode error yang terjadi di luar detail_screen.dart. Pertama, bukalah berkas main.dart. Ubahlah argumen DetailScreen menjadi seperti berikut.
         ChangeNotifierProvider(create: (context) => BookmarkListProvider()),
       ],
       child: MainApp(),
@@ -38,7 +39,7 @@ class MainApp extends StatelessWidget {
       routes: {
         NavigatorRoutes.mainRoute.name: (context) => const MainScreen(),
         NavigatorRoutes.detailRoute.name: (context) => DetailScreen(
-          tourism: ModalRoute.of(context)?.settings.arguments as Tourism,
+          tourismId: ModalRoute.of(context)?.settings.arguments as int,
         ),
         // NavigatorRoutes.detailRoute.name: (context) => CupertinoWidget(),
         // NavigatorRoutes.mainRoute.name: (context) => MainScreen(),

@@ -4,6 +4,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:tourism_app/data/models/tourism_detail_response.dart';
 import 'package:tourism_app/data/models/tourism_list_response.dart';
 
 class ApiService {
@@ -18,6 +19,19 @@ class ApiService {
       throw Exception('Failed to load tourism list');
     }
   }
+  // Tahapan mengonfigurasi API service sudah berakhir.
+
+  Future<TourismDetailResponse> getDetailTourism(int id) async {
+    final response = await http.get(Uri.parse("$_baseUrl/detail/$id"));
+
+    if (response.statusCode == 200) {
+      return TourismDetailResponse.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to load tourism detail');
+    }
+
+    // Tahapan formatting respons Web API untuk endpoint kedua sudah selesai.
+  }
 }
 
-// Tahapan mengonfigurasi API service sudah berakhir.
+final getTourismList = ApiService().getTourismList();

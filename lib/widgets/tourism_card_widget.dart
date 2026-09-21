@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tourism_app/constants/app_constants.dart';
 import 'package:tourism_app/data/models/tourism.dart';
@@ -18,7 +19,7 @@ class TourismCardWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 16),
         child: Card(
-          color: Colors.grey,
+          shadowColor: Colors.transparent,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -30,13 +31,29 @@ class TourismCardWidget extends StatelessWidget {
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
                       minWidth: 120,
-                      maxWidth: 120,
+                      maxWidth: 140,
                       minHeight: 80,
-                      maxHeight: 80,
+                      maxHeight: 100,
                     ),
                     child: Hero(
+                      curve: Curves.easeInOut,
                       tag: tourism.image,
-                      child: Image.network(tourism.image, fit: BoxFit.cover),
+                      child: Image.network(
+                        tourism.image,
+                        fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Center(child: CupertinoActivityIndicator());
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return Center(
+                            child: Icon(
+                              Icons.wifi_off_outlined,
+                              color: Colors.red,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -49,7 +66,10 @@ class TourismCardWidget extends StatelessWidget {
                       Text(
                         tourism.name,
                         style: Theme.of(context).textTheme.titleSmall,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
+                      const SizedBox(height: 8),
                       Row(
                         spacing: 6,
                         children: [
